@@ -9,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 
 public class AppTest {
+    //Open уровень
 
 	@Test
 	 public void test_help_page_title() throws InterruptedException {
@@ -52,7 +53,6 @@ public class AppTest {
       String search_text = search_title_element.getText();
       Assert.assertEquals("Текст Пошук", "Пошук", search_text);
 
-      Thread.sleep(4000);
       driver.close();
       }
 
