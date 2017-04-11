@@ -10,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Login {
     @Test
-    /* Шаги: 1. Зайти на страницу логина.
+    /* Шаги: 1. Зайти на страницу логина через главную стр. платформы
     2. Не заполняя поля email и password нажать "Увійти"
     ОР: Сообщения "Поле ... має бути заповнене"
     */
@@ -37,5 +37,33 @@ public class Login {
         Assert.assertEquals("Пустое поле Пароль", "Поле Пароль має бути заповнене", empty_password_message.getText());
 
         driver.close();
+    }
+
+    @Test
+    /* Шаги: 1. Перейти по URL на страницу логина.
+    2. Ввести логин и пароль.
+    3. Нажать "Увійти".
+    ОР: Сообщения "Поле ... має бути заповнене"
+    */
+    public void test_login_successful() throws InterruptedException {
+        System.setProperty("webdriver.chrome.driver", "E:/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+
+        driver.manage().window().maximize();
+        driver.get("https://webep-dev.ligazakon.net/signinup/auth");
+
+        WebElement email = driver.findElement(By.xpath("(//input[@id='email'])[3]"));
+        email.click();
+        email.clear();
+        email.sendKeys("Galyna.Kuleshova@ligazakon.ua");
+
+        WebElement password = driver.findElement(By.id("password"));
+        password.click();
+        password.clear();
+        password.sendKeys("76f78255");
+
+        Thread.sleep(3000);
+        WebElement login_btn = driver.findElement(By.xpath("//button[contains(text(),'Увійти')]"));
+        login_btn.click();
     }
 }
