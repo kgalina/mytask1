@@ -62,7 +62,6 @@ public class Login {
         password.clear();
         password.sendKeys("76f78255");
 
-        Thread.sleep(3000);
         WebElement login_btn = driver.findElement(By.xpath("//button[contains(text(),'Увійти')]"));
         login_btn.click();
     }
