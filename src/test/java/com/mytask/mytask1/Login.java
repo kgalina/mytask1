@@ -1,6 +1,5 @@
 package com.mytask.mytask1;
 
-import org.apache.http.util.Asserts;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -69,7 +68,7 @@ public class Login {
         WebElement login_btn = driver.findElement(By.xpath("//button[contains(text(),'Увійти')]"));
         login_btn.click();
 
-        Thread.sleep(2000);
+        Thread.sleep(4000);
 
         WebElement profile_btn = driver.findElement(By.id("profile-btn"));
         profile_btn.click();
