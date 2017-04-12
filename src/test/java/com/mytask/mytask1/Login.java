@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 
@@ -16,9 +15,9 @@ public class Login {
     ОР: Сообщения "Поле ... має бути заповнене"
     */
     public void test_login_empty_fields() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "E:/chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
-
+//        System.setProperty("webdriver.chrome.driver", "E:/chromedriver.exe");
+//        WebDriver driver = new ChromeDriver();
+        WebDriver driver = new FirefoxDriver();
         driver.manage().window().maximize();
         driver.get("https://webep-dev.ligazakon.net");
 
@@ -68,7 +67,7 @@ public class Login {
         WebElement login_btn = driver.findElement(By.xpath("//button[contains(text(),'Увійти')]"));
         login_btn.click();
 
-        Thread.sleep(4000);
+        Thread.sleep(6000);
 
         WebElement profile_btn = driver.findElement(By.id("profile-btn"));
         profile_btn.click();
