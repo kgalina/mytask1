@@ -1,14 +1,24 @@
 package com.mytask.mytask1;
 
+import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-
 public class Login {
+    private static WebDriver driver;
+
+    @BeforeClass
+    public static void setUp() {
+        driver = new FirefoxDriver();
+        driver.manage().window().maximize();
+        driver.get("https://ligazakon.net");
+    }
+
     @Test
     /* Шаги: 1. Зайти на страницу логина через главную стр. платформы
     2. Не заполняя поля email и password нажать "Увійти"
@@ -17,9 +27,6 @@ public class Login {
     public void test_login_empty_fields() throws InterruptedException {
 //        System.setProperty("webdriver.chrome.driver", "E:/chromedriver.exe");
 //        WebDriver driver = new ChromeDriver();
-        WebDriver driver = new FirefoxDriver();
-        driver.manage().window().maximize();
-        driver.get("https://webep-dev.ligazakon.net");
 
         WebElement sign_in_btn = driver.findElement(By.xpath("//a[contains(text(),'Увійти')]"));
         sign_in_btn.click();
@@ -35,8 +42,6 @@ public class Login {
 
         WebElement empty_password_message = driver.findElement(By.xpath("//span[contains(@ng-show, 'sign_in.password.$error.required')]"));
         Assert.assertEquals("Пустое поле Пароль", "Поле Пароль має бути заповнене", empty_password_message.getText());
-
-        driver.close();
     }
 
     @Test
@@ -50,8 +55,6 @@ public class Login {
 //        System.setProperty("webdriver.chrome.driver", "E:/chromedriver.exe");
 //        WebDriver driver = new ChromeDriver();
 
-        WebDriver driver = new FirefoxDriver();
-        driver.manage().window().maximize();
         driver.get("https://webep-dev.ligazakon.net/signinup/auth");
 
         WebElement email = driver.findElement(By.xpath("(//input[@id='email'])[3]"));
@@ -77,7 +80,10 @@ public class Login {
 
         WebElement user_name = driver.findElement(By.xpath("//*[@id='profMenu']//*[contains(@class, 'lz-user-name')]"));
         Assert.assertEquals("Имя, Фамилия в профиле", "Gala Kuleshova" , user_name.getText());
+    }
 
+    @AfterClass
+    public static void tearDown() {
         driver.close();
     }
 }
