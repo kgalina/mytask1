@@ -38,10 +38,35 @@ public class Login {
 
         Thread.sleep(1000);
         WebElement empty_email_message = driver.findElement(By.xpath("//span[contains(@ng-show, 'sign_in.email.$error.required')]"));
-        Assert.assertEquals("Пустое поле e-mail", "Поле e-mail має бути заповнене", empty_email_message.getText());
+        Assert.assertEquals("Сообщение, если не заполнено e-mail (укр.)", "Поле e-mail має бути заповнене", empty_email_message.getText());
 
         WebElement empty_password_message = driver.findElement(By.xpath("//span[contains(@ng-show, 'sign_in.password.$error.required')]"));
-        Assert.assertEquals("Пустое поле Пароль", "Поле Пароль має бути заповнене", empty_password_message.getText());
+        Assert.assertEquals("Сообщение, если не заполнен пароль", "Поле Пароль має бути заповнене", empty_password_message.getText());
+    }
+
+    @Test
+    /* Шаги: 1. Зайти на страницу логина по URL
+    2. Ввести логин, существующего пользователя
+    3. Ввести неверный пароль
+    ОР: Сообщение "Невірний логін або пароль"    */
+    public void test_incorrect_passwd() throws InterruptedException {
+
+        driver.get("https://webep-dev.ligazakon.net/signinup/auth");
+        WebElement email = driver.findElement(By.xpath("(//input[@id='email'])[3]"));
+        email.click();
+        email.clear();
+        email.sendKeys("487873737_some@mailinator.com");
+
+        WebElement password = driver.findElement(By.id("password"));
+        password.click();
+        password.clear();
+        password.sendKeys("incorrect_passwd");
+
+        WebElement login_btn = driver.findElement(By.xpath("//button[contains(text(),'Увійти')]"));
+        login_btn.click();
+
+        WebElement incorrect_passwd = driver.findElement(By.xpath("//div[contains(@ng-if, 'isShowErrorLoginAndPassword')]"));
+        Assert.assertEquals("Сообщение, если неверный пароль (укр.)", "Невірний логін або пароль", incorrect_passwd.getText());
     }
 
     @Test
@@ -60,12 +85,12 @@ public class Login {
         WebElement email = driver.findElement(By.xpath("(//input[@id='email'])[3]"));
         email.click();
         email.clear();
-        email.sendKeys("Galyna.Kuleshova@ligazakon.ua");
+        email.sendKeys("487873737_some@mailinator.com");
 
         WebElement password = driver.findElement(By.id("password"));
         password.click();
         password.clear();
-        password.sendKeys("76f78255");
+        password.sendKeys("dfc0F60E");
 
         WebElement login_btn = driver.findElement(By.xpath("//button[contains(text(),'Увійти')]"));
         login_btn.click();
@@ -76,10 +101,10 @@ public class Login {
         profile_btn.click();
 
         WebElement profile_email = driver.findElement(By.xpath("//h5[contains(@class, 'lz-user-email')][1]"));
-        Assert.assertEquals("email в профиле", "galyna.kuleshova@ligazakon.ua", profile_email.getText() );
+        Assert.assertEquals("email в профиле", "487873737_some@mailinator.com", profile_email.getText() );
 
         WebElement user_name = driver.findElement(By.xpath("//*[@id='profMenu']//*[contains(@class, 'lz-user-name')]"));
-        Assert.assertEquals("Имя, Фамилия в профиле", "Gala Kuleshova" , user_name.getText());
+        Assert.assertEquals("Имя, Фамилия в профиле", "имя Фамилия" , user_name.getText());
 
         WebElement logout_link = driver.findElement(By.id("profileExit"));
         logout_link.click();
