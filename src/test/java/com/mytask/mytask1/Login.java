@@ -80,6 +80,9 @@ public class Login {
 
         WebElement user_name = driver.findElement(By.xpath("//*[@id='profMenu']//*[contains(@class, 'lz-user-name')]"));
         Assert.assertEquals("Имя, Фамилия в профиле", "Gala Kuleshova" , user_name.getText());
+
+        WebElement logout_link = driver.findElement(By.id("profileExit"));
+        logout_link.click();
     }
 
     @AfterClass
