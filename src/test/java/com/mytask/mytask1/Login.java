@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.util.Random;
+
 public class Login {
     private static WebDriver driver;
 
@@ -60,7 +62,12 @@ public class Login {
         WebElement password = driver.findElement(By.id("password"));
         password.click();
         password.clear();
-        password.sendKeys("incorrect_passwd");
+
+        Random random = new Random();
+        int pass = random.nextInt();
+        String passwd = String.valueOf(pass);
+
+        password.sendKeys(passwd);
 
         WebElement login_btn = driver.findElement(By.xpath("//button[contains(text(),'Увійти')]"));
         login_btn.click();
