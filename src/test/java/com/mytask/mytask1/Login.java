@@ -16,7 +16,7 @@ public class Login {
     public static void setUp() {
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
-        driver.get("https://ligazakon.net");
+        driver.get("https://webep-dev.ligazakon.net");
     }
 
     @Test
