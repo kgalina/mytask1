@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.Random;
 
@@ -16,7 +16,15 @@ public class Login {
 
     @BeforeClass
     public static void setUp() {
-        driver = new FirefoxDriver();
+//        driver = new FirefoxDriver();
+
+//        Если нужно запустить Сhrome
+        System.setProperty("webdriver.chrome.driver", "E:/chromedriver.exe");
+        driver = new ChromeDriver();
+
+//        Если нужно запустить FF последней версии
+//        System.setProperty("webdriver.gecko.driver", "E:/geckodriver.exe");
+//        driver = new FirefoxDriver();
         driver.manage().window().maximize();
         driver.get("https://webep-dev.ligazakon.net");
     }
@@ -27,8 +35,6 @@ public class Login {
     ОР: Сообщения "Поле ... має бути заповнене"
     */
     public void test_login_empty_fields() throws InterruptedException {
-//        System.setProperty("webdriver.chrome.driver", "E:/chromedriver.exe");
-//        WebDriver driver = new ChromeDriver();
 
         WebElement sign_in_btn = driver.findElement(By.xpath("//a[contains(text(),'Увійти')]"));
         sign_in_btn.click();
@@ -84,9 +90,6 @@ public class Login {
     ОР: Отображатеся email, имя пользователя
     */
     public void test_login_successful() throws InterruptedException {
-//        System.setProperty("webdriver.chrome.driver", "E:/chromedriver.exe");
-//        WebDriver driver = new ChromeDriver();
-
         driver.get("https://webep-dev.ligazakon.net/signinup/auth");
 
         WebElement email = driver.findElement(By.xpath("(//input[@id='email'])[3]"));
@@ -107,6 +110,7 @@ public class Login {
         WebElement profile_btn = driver.findElement(By.id("profile-btn"));
         profile_btn.click();
 
+        Thread.sleep(2000);
         WebElement profile_email = driver.findElement(By.xpath("//h5[contains(@class, 'lz-user-email')][1]"));
         Assert.assertEquals("email в профиле", "487873737_some@mailinator.com", profile_email.getText() );
 
