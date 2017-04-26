@@ -124,8 +124,6 @@ public class Login {
     @AfterClass
     public static void tearDown() {
         driver.close();
-
-
     }
 }
 
