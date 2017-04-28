@@ -28,7 +28,7 @@ public class Login {
     }
 
     @Test
-    /* Шаги: 1. Зайти на страницу логина через главную стр. платформы
+    /* Шаги: 1. Зайти на страницу логина через кнопку "Увійти" главной стр. платформы
     2. Не заполняя поля email и password нажать "Увійти"
     ОР: Сообщения "Поле ... має бути заповнене"
     */
@@ -115,9 +115,9 @@ public class Login {
         WebElement logout_link = driver.findElement(By.id("profileExit"));
         logout_link.click();
     }
-
     @AfterClass
     public static void tearDown() {
+
         driver.close();
     }
 }
