@@ -11,6 +11,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class IncorrectAuthorizationMessages {
     private static WebDriver driver;
+    private static WebElement email;
+    private static WebElement password;
+    private static WebElement login_btn;
 
     @BeforeClass
     public static void setUp() throws InterruptedException {
@@ -23,22 +26,21 @@ public class IncorrectAuthorizationMessages {
         WebElement sign_in_btn = driver.findElement(By.xpath("//a[contains(text(),'Увійти')]"));
         sign_in_btn.click();
         Thread.sleep(2000);
+        email = driver.findElement(By.xpath("(//input[@id='email'])[3]"));
+        password = driver.findElement(By.id("password"));
+        login_btn = driver.findElement(By.xpath("//button[contains(text(),'Увійти')]"));
+
     }
 
     @Test
     /* 2. Не заполняя поля email и password нажать "Увійти"
     ОР: Сообщения "Поле ... має бути заповнене" */
     public void test_auth_empty_fields() throws InterruptedException {
-        WebElement email = driver.findElement(By.xpath("(//input[@id='email'])[3]"));
         email.click();
         email.clear();
-
-        WebElement password = driver.findElement(By.id("password"));
         password.click();
         password.clear();
-
-        WebElement login_btn = driver.findElement(By.xpath("//button[contains(text(),'Увійти')]"));
-        login_btn.submit();
+        login_btn.click();
 
         Thread.sleep(1000);
         WebElement empty_email_message = driver.findElement(By.xpath("//span[contains(@ng-show, 'sign_in.email.$error.required')]"));
@@ -54,19 +56,14 @@ public class IncorrectAuthorizationMessages {
     ОР: Сообщение "Невірний логін або пароль"    */
     public void test_incorrect_passwd() throws InterruptedException {
 
-        WebElement email = driver.findElement(By.xpath("(//input[@id='email'])[3]"));
         email.click();
         email.clear();
         email.sendKeys("487873737_some@mailinator.com");
-
-        WebElement password = driver.findElement(By.id("password"));
         password.click();
         password.clear();
 
         Steps user_inputs_passwd = new Steps();
         password.sendKeys(user_inputs_passwd.inputRandString());
-
-        WebElement login_btn = driver.findElement(By.xpath("//button[contains(text(),'Увійти')]"));
         login_btn.click();
 
         WebElement incorrect_passwd = driver.findElement(By.xpath("//div[contains(@ng-if, 'isShowErrorLoginAndPassword')]"));
@@ -78,13 +75,10 @@ public class IncorrectAuthorizationMessages {
     ОР: Сообщение "Введіть правильний e-mail" */
     public void test_incorrect_email() throws InterruptedException {
 
-        WebElement email = driver.findElement(By.xpath("(//input[@id='email'])[3]"));
         email.click();
         email.clear();
         Steps user_inputs_email = new Steps();
         email.sendKeys(user_inputs_email.inputRandString());
-
-        WebElement login_btn = driver.findElement(By.xpath("//button[contains(text(),'Увійти')]"));
         login_btn.click();
 
         WebElement incorrect_email = driver.findElement(By.xpath("//span[contains(@ng-show, 'sign_in.email.$error.pattern')]"));
