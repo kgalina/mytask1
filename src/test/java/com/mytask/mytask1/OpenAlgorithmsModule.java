@@ -48,12 +48,12 @@ public class OpenAlgorithmsModule {
         Thread.sleep(3000);
     }
     @Test
-    public void testBZModuleName() throws InterruptedException {
+    public void testAlgorithmsModuleName() throws InterruptedException {
         /* Проверка названия открытого модуля "Алгоритмы действий для бизнеса"*/
        Assert.assertTrue("Название модуля'Алгоритмы действий для бизнеса' не соответсвует ожидаемому", !driver.findElements(By.xpath("//h1[text()='Алгоритмы действий для бизнеса']")).isEmpty());
     }
     @Test
-    public void testBZModuleTitle() throws InterruptedException {
+    public void testAlgorithmsModuleTitle() throws InterruptedException {
         /* Проверка тайтла модуля "Алгоритмы действий для бизнеса"*/
         String algorithms_module_title = driver.getTitle();
         Assert.assertEquals("Тайтл модуля 'Алгоритмы действий для бизнеса' не соответствует ожидаемому",algorithms_module_title, "Алгоритмы действий для бизнеса");
