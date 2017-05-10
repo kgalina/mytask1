@@ -29,13 +29,12 @@ public class IncorrectAuthorizationMessages {
         email = driver.findElement(By.xpath("(//input[@id='email'])[3]"));
         password = driver.findElement(By.id("password"));
         login_btn = driver.findElement(By.xpath("//button[contains(text(),'Увійти')]"));
-
     }
 
     @Test
     /* 2. Не заполняя поля email и password нажать "Увійти"
     ОР: Сообщения "Поле ... має бути заповнене" */
-    public void test_auth_empty_fields() throws InterruptedException {
+    public void testAuthEmptyFields() throws InterruptedException {
         email.click();
         email.clear();
         password.click();
@@ -54,7 +53,7 @@ public class IncorrectAuthorizationMessages {
     /* Шаги: 2. Ввести логин, существующего пользователя
     3. Ввести неверный пароль
     ОР: Сообщение "Невірний логін або пароль"    */
-    public void test_incorrect_passwd() throws InterruptedException {
+    public void testIncorrectPasswd() throws InterruptedException {
 
         email.click();
         email.clear();
@@ -73,7 +72,7 @@ public class IncorrectAuthorizationMessages {
     @Test
     /* Шаги: 2. Ввести email без @
     ОР: Сообщение "Введіть правильний e-mail" */
-    public void test_incorrect_email() throws InterruptedException {
+    public void testIncorrectEmail() throws InterruptedException {
 
         email.click();
         email.clear();
