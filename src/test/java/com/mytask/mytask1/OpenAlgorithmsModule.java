@@ -44,7 +44,7 @@ public class OpenAlgorithmsModule {
             driver.switchTo().window(winHandle);
         }
 // Perform the actions on new window
-        WebElement algorithms_box = driver.findElement(By.xpath("//div[@id='business_schema']//div[@class='box']"));
+        WebElement algorithms_box = driver.findElement(By.xpath("//div[@id='business_schema']//div[@class='box new-box']"));
         algorithms_box.click();
         Thread.sleep(3000);
     }
