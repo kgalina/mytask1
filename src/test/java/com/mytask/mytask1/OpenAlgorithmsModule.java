@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import static com.mytask.mytask1.Constants.URL;
 
 public class OpenAlgorithmsModule {
     private static WebDriver driver;
@@ -20,7 +21,7 @@ public class OpenAlgorithmsModule {
         System.setProperty("webdriver.chrome.driver", "E:/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get("https://webep-dev.ligazakon.net/signinup/auth");
+        driver.get(URL.AUTH_DEV);
 
         WebElement email = driver.findElement(By.xpath("(//input[@id='email'])[3]"));
         email.click();

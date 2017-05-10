@@ -5,7 +5,7 @@ public class Constants {
         private URL() { }
         public static final String DEV = "https://webep-dev.ligazakon.net";
         public static final String TEST = "https://webep-test.ligazakon.net";
-
+        public static final String AUTH_DEV = "https://webep-dev.ligazakon.net/signinup/auth";
 
     }
 }
