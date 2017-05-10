@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import static com.mytask.mytask1.Constants.URL;
 
 public class IncorrectAuthorizationMessages {
     private static WebDriver driver;
@@ -21,7 +22,7 @@ public class IncorrectAuthorizationMessages {
         System.setProperty("webdriver.chrome.driver", "E:/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get("https://webep-dev.ligazakon.net");
+        driver.get(URL.DEV);
 
         WebElement sign_in_btn = driver.findElement(By.xpath("//a[contains(text(),'Увійти')]"));
         sign_in_btn.click();
