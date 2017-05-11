@@ -36,9 +36,7 @@ public class IncorrectAuthorizationMessages {
     /* 2. Не заполняя поля email и password нажать "Увійти"
     ОР: Сообщения "Поле ... має бути заповнене" */
     public void testAuthEmptyFields() throws InterruptedException {
-        email.click();
         email.clear();
-        password.click();
         password.clear();
         login_btn.click();
 
@@ -56,10 +54,8 @@ public class IncorrectAuthorizationMessages {
     ОР: Сообщение "Невірний логін або пароль"    */
     public void testIncorrectPasswd() throws InterruptedException {
 
-        email.click();
         email.clear();
         email.sendKeys("487873737_some@mailinator.com");
-        password.click();
         password.clear();
 
         Steps user_inputs_passwd = new Steps();
@@ -75,7 +71,6 @@ public class IncorrectAuthorizationMessages {
     ОР: Сообщение "Введіть правильний e-mail" */
     public void testIncorrectEmail() throws InterruptedException {
 
-        email.click();
         email.clear();
         Steps user_inputs_email = new Steps();
         email.sendKeys(user_inputs_email.inputRandString());
