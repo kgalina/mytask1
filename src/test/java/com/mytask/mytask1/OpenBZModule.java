@@ -1,10 +1,17 @@
 package com.mytask.mytask1;
 
-import org.junit.*;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import static com.mytask.mytask1.Constants.URL;
 
 public class OpenBZModule {
@@ -19,6 +26,7 @@ public class OpenBZModule {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(URL.AUTH_DEV);
+        Wait<WebDriver> wait = new WebDriverWait(driver, 5).withMessage("Элемент не найден");
 
         WebElement email = driver.findElement(By.xpath("(//input[@id='email'])[3]"));
         email.click();
@@ -32,10 +40,11 @@ public class OpenBZModule {
 
         WebElement login_btn = driver.findElement(By.xpath("//button[contains(text(),'Увійти')]"));
         login_btn.click();
-        Thread.sleep(6000);
+//        Thread.sleep(6000);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'grand')]")));
 //Perform the click operation that opens new window
-        WebElement ips_box_ico = driver.findElement(By.xpath("//div[@class='ioco ioco-ips']"));
-        ips_box_ico.click();
+        WebElement ips_grand_product = driver.findElement(By.xpath("//*[contains(@class, 'grand')]"));
+        ips_grand_product.click();
 //Switch to new window opened
         for (String winHandle : driver.getWindowHandles()) {
             driver.switchTo().window(winHandle);
