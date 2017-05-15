@@ -37,8 +37,8 @@ public class OpenAlgorithmsModule {
         login_btn.click();
         Thread.sleep(6000);
 //Perform the click operation that opens new window
-        WebElement ips_box_ico = driver.findElement(By.xpath("//div[@class='ioco ioco-ips']"));
-        ips_box_ico.click();
+        WebElement ips_grand_product = driver.findElement(By.xpath("//*[contains(@class, 'grand')]"));
+        ips_grand_product.click();
 //Switch to new window opened
         for (String winHandle : driver.getWindowHandles()) {
             driver.switchTo().window(winHandle);
