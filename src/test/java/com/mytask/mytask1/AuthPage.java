@@ -19,7 +19,7 @@ public class AuthPage {
     @FindBy(xpath = "//button[contains(text(),'Увійти')]")
     public WebElement login_btn;
 
-    public void Click(WebElement element){
+    public void clickElement(WebElement element){
         element.click();
     }
 }
