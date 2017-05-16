@@ -14,10 +14,19 @@ public class AuthPage {
     }
 
     @FindBy (xpath="(//input[@id='email'])[3]")
-    public WebElement email_element ;
+    public WebElement email_input;
+
+    @FindBy(id = "password")
+    public WebElement passwd_input;
 
     @FindBy(xpath = "//button[contains(text(),'Увійти')]")
     public WebElement login_btn;
+
+    @FindBy(xpath = "//span[contains(@ng-show, 'sign_in.email.$error.required')]")
+    public WebElement empty_email_message;
+
+    @FindBy(xpath = "//span[contains(@ng-show, 'sign_in.password.$error.required')]")
+    public WebElement empty_passwd_message;
 
     public void clickElement(WebElement element){
 
