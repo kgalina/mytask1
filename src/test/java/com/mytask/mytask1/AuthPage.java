@@ -17,10 +17,10 @@ public class AuthPage {
     public WebElement email_element ;
 
     @FindBy(xpath = "//button[contains(text(),'Увійти')]")
-    public WebElement login_btn_element;
+    public WebElement login_btn;
 
-    public void loginBtnClick(){
-        login_btn_element.click();
+    public void Click(WebElement element){
+        element.click();
     }
 }
 

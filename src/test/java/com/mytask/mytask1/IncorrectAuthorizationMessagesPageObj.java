@@ -31,7 +31,7 @@ public class IncorrectAuthorizationMessagesPageObj {
         Thread.sleep(2000);
         email = driver.findElement(By.xpath("(//input[@id='email'])[3]"));
         password = driver.findElement(By.id("password"));
-        authPage.loginBtnClick();
+        authPage.Click(authPage.login_btn);
     }
 
     @Test
