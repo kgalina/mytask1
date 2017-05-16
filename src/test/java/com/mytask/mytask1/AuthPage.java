@@ -20,6 +20,7 @@ public class AuthPage {
     public WebElement login_btn;
 
     public void clickElement(WebElement element){
+
         element.click();
     }
 }

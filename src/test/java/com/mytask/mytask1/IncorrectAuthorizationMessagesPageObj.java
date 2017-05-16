@@ -51,7 +51,6 @@ public class IncorrectAuthorizationMessagesPageObj {
 
     @AfterClass
     public static void tearDown() {
-
         driver.close();
     }
 }
