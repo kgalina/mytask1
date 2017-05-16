@@ -15,8 +15,7 @@ public class IncorrectAuthorizationMessagesPageObj {
     private static WebDriver driver;
     private static WebElement email;
     private static WebElement password;
-    private static WebElement login_btn;
-
+    private static AuthPage authPage;
     @BeforeClass
     public static void setUp() throws InterruptedException {
     /* Шаги: 1. Зайти на страницу авторизации через кнопку "Увійти" главной стр. платформы*/
@@ -25,12 +24,14 @@ public class IncorrectAuthorizationMessagesPageObj {
         driver.manage().window().maximize();
         driver.get(URL.DEV);
 
+        authPage = new AuthPage(driver);
+
         WebElement sign_in_btn = driver.findElement(By.xpath("//a[contains(text(),'Увійти')]"));
         sign_in_btn.click();
         Thread.sleep(2000);
         email = driver.findElement(By.xpath("(//input[@id='email'])[3]"));
         password = driver.findElement(By.id("password"));
-        login_btn = driver.findElement(By.xpath("//button[contains(text(),'Увійти')]"));
+        authPage.loginBtnClick();
     }
 
     @Test
@@ -39,7 +40,6 @@ public class IncorrectAuthorizationMessagesPageObj {
     public void testAuthEmptyFields() throws InterruptedException {
         email.clear();
         password.clear();
-        login_btn.click();
 
         Thread.sleep(1000);
         WebElement empty_email_message = driver.findElement(By.xpath("//span[contains(@ng-show, 'sign_in.email.$error.required')]"));
