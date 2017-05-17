@@ -13,7 +13,6 @@ import static org.junit.Assert.assertEquals;
 
 public class IncorrectAuthorizationMessagesPageObj {
     private static WebDriver driver;
-    private static WebElement password;
     private static AuthPage authPage;
     @BeforeClass
     public static void setUp() throws InterruptedException {
@@ -37,7 +36,6 @@ public class IncorrectAuthorizationMessagesPageObj {
     public void testAuthEmptyFields() throws InterruptedException {
         authPage.email_input.clear();
         authPage.passwd_input.clear();
-
         Thread.sleep(1000);
         assertEquals("Сообщение, если не заполнено e-mail (укр.)", "Поле e-mail має бути заповнене", authPage.empty_email_message.getText());
         assertEquals("Сообщение, если не заполнен пароль", "Поле Пароль має бути заповнене", authPage.empty_passwd_message.getText());
@@ -45,7 +43,8 @@ public class IncorrectAuthorizationMessagesPageObj {
 
     @AfterClass
     public static void tearDown() {
-        driver.close();
+
+        driver.quit();
     }
 }
 
