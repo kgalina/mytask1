@@ -28,6 +28,12 @@ public class AuthPage {
     @FindBy(xpath = "//span[contains(@ng-show, 'sign_in.password.$error.required')]")
     public WebElement empty_passwd_message;
 
+    @FindBy(xpath = "//div[contains(@ng-if, 'isShowErrorLoginAndPassword')]")
+    public WebElement incorrect_passwd;
+
+    @FindBy(xpath = "//span[contains(@ng-show, 'sign_in.email.$error.pattern')]")
+    public WebElement incorrect_email;
+
     public void clickElement(WebElement element){
 
         element.click();
