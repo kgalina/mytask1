@@ -8,6 +8,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Login {
     private static WebDriver driver;
@@ -37,8 +40,8 @@ public class Login {
         WebElement sign_in_btn = driver.findElement(By.xpath("//a[contains(text(),'Увійти')]"));
         sign_in_btn.click();
 
-        Thread.sleep(2000);
-
+        final Wait<WebDriver> wait = new WebDriverWait(driver, 5).withMessage("Element was not found");
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Увійти')]")));
         WebElement login_btn = driver.findElement(By.xpath("//button[contains(text(),'Увійти')]"));
         login_btn.submit();
 
