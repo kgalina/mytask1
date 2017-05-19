@@ -23,9 +23,7 @@ public class IncorrectAuthorizationMessagesPageObj {
 
         authPage = new AuthPage(driver);
         mainPltPage = new MainPltPage(driver);
-
-        mainPltPage.sign_in_btn.click();
-        Thread.sleep(2000);
+        mainPltPage.clickAndWaitNextElement(mainPltPage.sign_in_btn, authPage.login_btn);
     }
     @Test
     /* 2. Не заполняя поля email и password нажать "Увійти"
@@ -33,7 +31,7 @@ public class IncorrectAuthorizationMessagesPageObj {
     public void testAuthEmptyFields() throws InterruptedException {
         authPage.email_input.clear();
         authPage.passwd_input.clear();
-        authPage.clickElement(authPage.login_btn);
+        authPage.login_btn.click();
         assertEquals("Сообщение, если не заполнено e-mail (укр.)", "Поле e-mail має бути заповнене", authPage.empty_email_message.getText());
         assertEquals("Сообщение, если не заполнен пароль", "Поле Пароль має бути заповнене", authPage.empty_passwd_message.getText());
     }
@@ -49,7 +47,7 @@ public class IncorrectAuthorizationMessagesPageObj {
 
         Steps user_inputs_passwd = new Steps();
         authPage.passwd_input.sendKeys(user_inputs_passwd.inputRandString());
-        authPage.clickElement(authPage.login_btn);
+        authPage.login_btn.click();
 
         assertEquals("Сообщение, если неверный пароль (укр.)", "Невірний логін або пароль", authPage.incorrect_passwd.getText());
     }
@@ -61,7 +59,7 @@ public class IncorrectAuthorizationMessagesPageObj {
         authPage.email_input.clear();
         Steps user_inputs_email = new Steps();
         authPage.email_input.sendKeys(user_inputs_email.inputRandString());
-        authPage.clickElement(authPage.login_btn);
+        authPage.login_btn.click();
 
         assertEquals("Сообщение, если email без @ (укр.)", "Введіть правильний e-mail", authPage.incorrect_email.getText());
     }

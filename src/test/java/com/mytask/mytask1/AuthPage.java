@@ -34,9 +34,5 @@ public class AuthPage {
     @FindBy(xpath = "//span[contains(@ng-show, 'sign_in.email.$error.pattern')]")
     public WebElement incorrect_email;
 
-    public void clickElement(WebElement element){
-
-        element.click();
     }
-}
 
