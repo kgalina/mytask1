@@ -48,7 +48,7 @@ public class OpenBZModule {
             driver.switchTo().window(winHandle);
         }
 // Perform the actions on new window
-        mainIpsPage.clickAndWaitNextElement(mainIpsPage.acc_and_law_box, accountantAndLawPage.acc_and_law_header);
+        mainIpsPage.acc_and_law_box.click();
     }
     @Test
     public void testBZModuleName() throws InterruptedException {
