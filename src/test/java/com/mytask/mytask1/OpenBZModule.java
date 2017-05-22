@@ -16,6 +16,10 @@ import static com.mytask.mytask1.Constants.URL;
 
 public class OpenBZModule {
     private static WebDriver driver;
+    private static AuthPage authPage;
+    private static MainPltPage mainPltPage;
+    private static MainIpsPage mainIpsPage;
+    private static AccountantAndLawPage accountantAndLawPage;
     @BeforeClass
     public static void setUp() throws InterruptedException {
         /*Шаги: 1. Залогиниться
@@ -27,32 +31,26 @@ public class OpenBZModule {
         driver.manage().window().maximize();
         driver.get(URL.AUTH_DEV);
         Wait<WebDriver> wait = new WebDriverWait(driver, 5).withMessage("Элемент не найден");
+        authPage = new AuthPage(driver);
+        mainPltPage = new MainPltPage(driver);
+        mainIpsPage = new MainIpsPage(driver);
+        accountantAndLawPage = new AccountantAndLawPage(driver);
 
-        WebElement email = driver.findElement(By.xpath("(//input[@id='email'])[3]"));
-        email.click();
-        email.clear();
-        email.sendKeys("Galyna.Kuleshova@ligazakon.ua");
+        authPage.email_input.clear();
+        authPage.email_input.sendKeys("Galyna.Kuleshova@ligazakon.ua");
 
-        WebElement password = driver.findElement(By.id("password"));
-        password.click();
-        password.clear();
-        password.sendKeys("1111");
+        authPage.passwd_input.clear();
+        authPage.passwd_input.sendKeys("**");
 
-        WebElement login_btn = driver.findElement(By.xpath("//button[contains(text(),'Увійти')]"));
-        login_btn.click();
-//        Thread.sleep(6000);
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'grand')]")));
-//Perform the click operation that opens new window
-        WebElement ips_grand_product = driver.findElement(By.xpath("//*[contains(@class, 'grand')]"));
-        ips_grand_product.click();
+        authPage.clickAndWaitNextElement(authPage.login_btn, mainPltPage.grand_product);
+        mainPltPage.grand_product.click();
 //Switch to new window opened
         for (String winHandle : driver.getWindowHandles()) {
             driver.switchTo().window(winHandle);
         }
 // Perform the actions on new window
-        WebElement acc_and_law_box = driver.findElement(By.xpath("//div[@id='accountant_and_law']//div[@class='box']"));
-        acc_and_law_box.click();
-        Thread.sleep(3000);
+        mainIpsPage.clickAndWaitNextElement(mainIpsPage.acc_and_law_box, accountantAndLawPage.acc_and_law_header);
+//        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//h1[text()='БУХГАЛТЕР И ЗАКОН']"))));
     }
     @Test
     public void testBZModuleName() throws InterruptedException {
@@ -67,6 +65,7 @@ public class OpenBZModule {
     }
     @AfterClass
     public static void tearDown() {
+
         driver.quit();
     }
 
