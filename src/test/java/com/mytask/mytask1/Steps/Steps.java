@@ -1,4 +1,4 @@
-package com.mytask.mytask1;
+package com.mytask.mytask1.Steps;
 
 import java.util.Random;
 

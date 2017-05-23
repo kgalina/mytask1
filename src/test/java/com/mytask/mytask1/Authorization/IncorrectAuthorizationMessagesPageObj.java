@@ -1,12 +1,15 @@
-package com.mytask.mytask1;
+package com.mytask.mytask1.Authorization;
 
+import com.mytask.mytask1.Pages.AuthPage;
+import com.mytask.mytask1.Pages.MainPltPage;
+import com.mytask.mytask1.Steps.Steps;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import static com.mytask.mytask1.Constants.URL;
+import static com.mytask.mytask1.Constants.Constants.URL;
 import static org.junit.Assert.assertEquals;
 
 public class IncorrectAuthorizationMessagesPageObj {

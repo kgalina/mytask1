@@ -1,4 +1,4 @@
-package com.mytask.mytask1;
+package com.mytask.mytask1.Constants;
 
 public class Constants {
     public static class URL {

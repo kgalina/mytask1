@@ -1,6 +1,5 @@
-package com.mytask.mytask1;
+package com.mytask.mytask1.Pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,19 +8,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MainPltPage {
+public class AccountantAndLawPage {
     private WebDriver driver;
 
-    public MainPltPage(WebDriver driver) {
+    public AccountantAndLawPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
-    @FindBy (xpath="//a[contains(text(),'Увійти')]")//Кнопка в шапке платформы
-    public WebElement sign_in_btn;
-
-    @FindBy(xpath = "//*[contains(@class, 'grand')]")
-    public WebElement grand_product;
+    @FindBy (xpath="//h1[text()='БУХГАЛТЕР И ЗАКОН']")
+    public WebElement acc_and_law_header;
 
     public void clickAndWaitNextElement(WebElement element, WebElement next_elelment){
         Wait<WebDriver> wait;
@@ -32,5 +28,5 @@ public class MainPltPage {
 
     }
 
-}
+    }
 

@@ -1,32 +1,34 @@
-package com.mytask.mytask1;
+package com.mytask.mytask1.OpenModules;
 
+import com.mytask.mytask1.Pages.AccountantAndLawPage;
+import com.mytask.mytask1.Pages.AuthPage;
+import com.mytask.mytask1.Pages.MainIpsPage;
+import com.mytask.mytask1.Pages.MainPltPage;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static com.mytask.mytask1.Constants.URL;
+import static com.mytask.mytask1.Constants.Constants.URL;
 import static org.junit.Assert.assertEquals;
 
-public class OpenAlgorithmsModule {
+public class OpenBZModule {
     private static WebDriver driver;
     private static AuthPage authPage;
-    private static MainIpsPage mainIpsPage;
     private static MainPltPage mainPltPage;
+    private static MainIpsPage mainIpsPage;
+    private static AccountantAndLawPage accountantAndLawPage;
     private static Wait<WebDriver> wait;
-    private static AlgorithmsModulePage algorithmsModulePage;
     @BeforeClass
     public static void setUp() throws InterruptedException {
         /*Шаги: 1. Залогиниться
          2. Кликнуть по прямоугольнику продукта "Гранд"
          3. Переключиться к новой вкладке
-         4. Кликнуть по квадратику модуля "Алгоритмы действий"*/
+         4. Кликнуть по квадратику модуля "БЗ"*/
         System.setProperty("webdriver.chrome.driver", "E:/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -35,7 +37,7 @@ public class OpenAlgorithmsModule {
         authPage = new AuthPage(driver);
         mainPltPage = new MainPltPage(driver);
         mainIpsPage = new MainIpsPage(driver);
-        algorithmsModulePage = new AlgorithmsModulePage(driver);
+        accountantAndLawPage = new AccountantAndLawPage(driver);
 
         authPage.email_input.clear();
         authPage.email_input.sendKeys("Galyna.Kuleshova@ligazakon.ua");
@@ -50,20 +52,20 @@ public class OpenAlgorithmsModule {
             driver.switchTo().window(winHandle);
         }
 // Perform the actions on new window
-        WebElement algorithms_box = driver.findElement(By.xpath("//div[@id='business_schema']//div[@class='box new-box']"));
-        mainIpsPage.algorithms_box.click();
+        mainIpsPage.acc_and_law_box.click();
     }
     @Test
-    public void testAlgorithmsModuleName() throws InterruptedException {
-        /* Проверка названия открытого модуля "Алгоритмы действий для бизнеса"*/
-        wait.until(ExpectedConditions.visibilityOf(algorithmsModulePage.algorithms_header));
-        assertEquals("Название модуля'Алгоритмы действий для бизнеса' не соответсвует ожидаемому", "Алгоритмы действий для бизнеса" , algorithmsModulePage.algorithms_header.getText());
+    public void testBZModuleName() throws InterruptedException {
+        /* Проверка названия открытого модуля "БУХГАЛТЕР И ЗАКОН"*/
+        wait.until(ExpectedConditions.visibilityOf(accountantAndLawPage.acc_and_law_header));
+        assertEquals("Название модуля'Бухгалтер и закон' не соответсвует ожидаемому", "БУХГАЛТЕР И ЗАКОН" , accountantAndLawPage.acc_and_law_header.getText());
     }
     @Test
-    public void testAlgorithmsModuleTitle() throws InterruptedException {
-        /* Проверка тайтла модуля "Алгоритмы действий для бизнеса"*/
-        String algorithms_module_title = driver.getTitle();
-        assertEquals("Тайтл модуля 'Алгоритмы действий для бизнеса' не соответствует ожидаемому",algorithms_module_title, "Алгоритмы действий для бизнеса");
+    public void testBZModuleTitle() throws InterruptedException {
+        /* Проверка тайтла модуля "БУХГАЛТЕР И ЗАКОН"*/
+        wait.until(ExpectedConditions.visibilityOf(accountantAndLawPage.acc_and_law_header));
+        String bz_module_title = driver.getTitle();
+        assertEquals("Тайтл модуля 'Бухгалтер и Закон' не соответствует ожидаемому","БУХГАЛТЕР И ЗАКОН", bz_module_title);
     }
     @AfterClass
     public static void tearDown() {

@@ -1,4 +1,4 @@
-package com.mytask.mytask1;
+package com.mytask.mytask1.Pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,16 +8,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class AccountantAndLawPage {
+public class AlgorithmsModulePage {
     private WebDriver driver;
 
-    public AccountantAndLawPage(WebDriver driver) {
+    public AlgorithmsModulePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
-    @FindBy (xpath="//h1[text()='БУХГАЛТЕР И ЗАКОН']")
-    public WebElement acc_and_law_header;
+    @FindBy (xpath="//h1[text()='Алгоритмы действий для бизнеса']")
+    public WebElement algorithms_header;
 
     public void clickAndWaitNextElement(WebElement element, WebElement next_elelment){
         Wait<WebDriver> wait;
