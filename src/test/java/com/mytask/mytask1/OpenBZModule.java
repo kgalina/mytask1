@@ -22,7 +22,7 @@ public class OpenBZModule {
     @BeforeClass
     public static void setUp() throws InterruptedException {
         /*Шаги: 1. Залогиниться
-         2. Кликнуть по квадратику модуля ips
+         2. Кликнуть по прямоугольнику продукта "Гранд"
          3. Переключиться к новой вкладке
          4. Кликнуть по квадратику модуля "БЗ"*/
         System.setProperty("webdriver.chrome.driver", "E:/chromedriver.exe");

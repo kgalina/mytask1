@@ -1,63 +1,69 @@
 package com.mytask.mytask1;
 
 import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import static com.mytask.mytask1.Constants.URL;
+import static org.junit.Assert.assertEquals;
 
 public class OpenAlgorithmsModule {
     private static WebDriver driver;
+    private static AuthPage authPage;
+    private static MainIpsPage mainIpsPage;
+    private static MainPltPage mainPltPage;
+    private static Wait<WebDriver> wait;
+    private static AlgorithmsModulePage algorithmsModulePage;
     @BeforeClass
     public static void setUp() throws InterruptedException {
         /*Шаги: 1. Залогиниться
-         2. Кликнуть по квадратику модуля ips
+         2. Кликнуть по прямоугольнику продукта "Гранд"
          3. Переключиться к новой вкладке
          4. Кликнуть по квадратику модуля "Алгоритмы действий"*/
         System.setProperty("webdriver.chrome.driver", "E:/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(URL.AUTH_DEV);
+        wait = new WebDriverWait(driver, 5, 1000).withMessage("Элемент не найден");
+        authPage = new AuthPage(driver);
+        mainPltPage = new MainPltPage(driver);
+        mainIpsPage = new MainIpsPage(driver);
+        algorithmsModulePage = new AlgorithmsModulePage(driver);
 
-        WebElement email = driver.findElement(By.xpath("(//input[@id='email'])[3]"));
-        email.click();
-        email.clear();
-        email.sendKeys("Galyna.Kuleshova@ligazakon.ua");
+        authPage.email_input.clear();
+        authPage.email_input.sendKeys("Galyna.Kuleshova@ligazakon.ua");
 
-        WebElement password = driver.findElement(By.id("password"));
-        password.click();
-        password.clear();
-        password.sendKeys("1111");
+        authPage.passwd_input.clear();
+        authPage.passwd_input.sendKeys("*");
 
-        WebElement login_btn = driver.findElement(By.xpath("//button[contains(text(),'Увійти')]"));
-        login_btn.click();
-        Thread.sleep(6000);
-//Perform the click operation that opens new window
-        WebElement ips_grand_product = driver.findElement(By.xpath("//*[contains(@class, 'grand')]"));
-        ips_grand_product.click();
+        authPage.clickAndWaitNextElement(authPage.login_btn, mainPltPage.grand_product);
+        mainPltPage.grand_product.click();
 //Switch to new window opened
         for (String winHandle : driver.getWindowHandles()) {
             driver.switchTo().window(winHandle);
         }
 // Perform the actions on new window
         WebElement algorithms_box = driver.findElement(By.xpath("//div[@id='business_schema']//div[@class='box new-box']"));
-        algorithms_box.click();
-        Thread.sleep(3000);
+        mainIpsPage.algorithms_box.click();
     }
     @Test
     public void testAlgorithmsModuleName() throws InterruptedException {
         /* Проверка названия открытого модуля "Алгоритмы действий для бизнеса"*/
-       Assert.assertTrue("Название модуля'Алгоритмы действий для бизнеса' не соответсвует ожидаемому", !driver.findElements(By.xpath("//h1[text()='Алгоритмы действий для бизнеса']")).isEmpty());
+        wait.until(ExpectedConditions.visibilityOf(algorithmsModulePage.algorithms_header));
+        assertEquals("Название модуля'Алгоритмы действий для бизнеса' не соответсвует ожидаемому", "Алгоритмы действий для бизнеса" , algorithmsModulePage.algorithms_header.getText());
     }
     @Test
     public void testAlgorithmsModuleTitle() throws InterruptedException {
         /* Проверка тайтла модуля "Алгоритмы действий для бизнеса"*/
         String algorithms_module_title = driver.getTitle();
-        Assert.assertEquals("Тайтл модуля 'Алгоритмы действий для бизнеса' не соответствует ожидаемому",algorithms_module_title, "Алгоритмы действий для бизнеса");
+        assertEquals("Тайтл модуля 'Алгоритмы действий для бизнеса' не соответствует ожидаемому",algorithms_module_title, "Алгоритмы действий для бизнеса");
     }
     @AfterClass
     public static void tearDown() {
