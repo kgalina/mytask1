@@ -19,8 +19,11 @@ public class MainPltPage {
     @FindBy (xpath="//a[contains(text(),'Увійти')]")//Кнопка в шапке платформы
     public WebElement sign_in_btn;
 
-    @FindBy(xpath = "//*[contains(@class, 'grand')]")
+    @FindBy(xpath = "//*[contains(@class, 'grand')]")//Прямоуголльник купленной лицензии
     public WebElement grand_product;
+
+    @FindBy(xpath = "//input[@ng-model='searchValue']")//Поле поиска
+    public WebElement search_field;
 
     public void clickAndWaitNextElement(WebElement element, WebElement next_elelment){
         Wait<WebDriver> wait;
