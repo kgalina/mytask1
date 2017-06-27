@@ -7,9 +7,7 @@ import com.mytask.mytask1.Pages.MainPltPage;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
@@ -54,7 +52,6 @@ public class OpenAlgorithmsModule {
             driver.switchTo().window(winHandle);
         }
 // Perform the actions on new window
-        WebElement algorithms_box = driver.findElement(By.xpath("//div[@id='business_schema']//div[@class='box new-box']"));
         mainIpsPage.algorithms_box.click();
     }
     @Test

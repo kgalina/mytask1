@@ -2,6 +2,7 @@ package com.mytask.mytask1;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -32,7 +33,7 @@ public class MainIPS {
         WebElement password = driver.findElement(By.id("password"));
         password.click();
         password.clear();
-        password.sendKeys("1111");
+        password.sendKeys("*");
 
         WebElement login_btn = driver.findElement(By.xpath("//button[contains(text(),'Увійти')]"));
         login_btn.click();

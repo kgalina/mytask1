@@ -1,5 +1,6 @@
 package com.mytask.mytask1;
 
+import com.mytask.mytask1.Steps.Steps;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -8,7 +9,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import static com.mytask.mytask1.Constants.URL;
+
+import static com.mytask.mytask1.Constants.Constants.URL;
 
 public class IncorrectAuthorizationMessages {
     private static WebDriver driver;
